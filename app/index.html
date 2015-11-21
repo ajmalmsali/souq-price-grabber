@@ -1,6 +1,17 @@
 <!DOCTYPE html>
   <html>
     <head>
+      <!-- Begin Inspectlet Embed Code -->
+      <script type="text/javascript" id="inspectletjs">
+      window.__insp = window.__insp || [];
+      __insp.push(['wid', 108071293]);
+      (function() {
+      function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+      setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+      })();
+      </script>
+      <!-- End Inspectlet Embed Code -->
+
       <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       
@@ -9,7 +20,6 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
       <link rel="stylesheet" href="bower_components/Materialize/bin/materialize.css" />
-      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
       <!-- endbower -->
       <!-- endbuild -->
     
@@ -51,7 +61,7 @@
             <div class="card-content">
 
               <span class="card-title activator grey-text text-darken-4">
-                {{ product.name | limitTo: 30 }}...
+                {{ product.name | limitTo: 24 }}...
                 <i class="material-icons right">more_vert</i>
               </span>
 
@@ -61,10 +71,10 @@
               </p>
 
             </div>
-            <div class="card-action">
-              <a ng-href="{{ product.url }}" class="center">
-                  <strike class="grey-text" ng-show="product.price_listed!=0">{{ product.price_listed }}</strike>&nbsp;
-                  {{ product.price_discounted }}{{ product.price_currency }}
+            <div class="card-action center">
+              <a ng-href="{{ product.url }}">
+                  <strike class="grey-text" ng-show="product.price_listed!=0">{{ product.price_listed }}</strike>
+                  {{ product.price_discounted }}&nbsp;{{ product.price_currency }}
                   
                 </a>
             </div>
@@ -116,7 +126,7 @@
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-       ga('create', 'UA-XXXXX-X');
+       ga('create', 'UA-70462715-1');
        ga('send', 'pageview');
     </script>
 
@@ -127,9 +137,6 @@
     <script src="bower_components/materialize/bin/materialize.js"></script>
     <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
     <script src="bower_components/Materialize/bin/materialize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

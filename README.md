@@ -1,17 +1,17 @@
-# Souq.com Product Price Grabber.
+# Souq Product Price Grabber.
 
 Fetch's Product Prices from Souq.com
 
   - Type some keyword on top left searchbar
   - Scroll-down to see the load more button
+  - Supports pagination, lot more to do..
 
-### Hosted Version
+### Warning
+The App might look slower _(always more than 200ms)_, as it waits for backend scraping using PHP.
 
+# [DEMO](https://)
 ### PHP file - Api.php
 Single class with methods to curl into, fetch, scrap, parse and json_encode results.
-
-Supports pagination
-
 
 ### Tech
 * [AngularJS] - HTML enhanced for web apps!
@@ -20,10 +20,10 @@ Supports pagination
 * [PHP] - Hypertext Preprocessor
 & a lot more like grunt, bower, node.js, karma, yo ...
 
-### Compiling Frontend
+### Compiling Frontend Angular App
 
 ```sh
-$ grunt
+$ grunt build
 ```
 
 ### Development

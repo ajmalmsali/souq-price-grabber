@@ -20,7 +20,7 @@ class SouqProductPrices{
       
     private function calculateRating($DOMNode){
         $html = $this->doc->saveHTML( $DOMNode );
-        $stars = preg_match_all('/class="fi-star on"/', $html); //counts the number of positive stars.
+        $stars = preg_match_all('/class="fi-star on"/', $html, $results); //counts the number of positive stars.
         return $stars;
     }
 
@@ -82,6 +82,7 @@ class SouqProductPrices{
         $this->connect();
     }
 
+    //downloads the HTML with keyword & page_no as parameter.
     public function connect(){
         $url = $this->url;
         $keyword = $this->keyword;
@@ -125,7 +126,7 @@ class SouqProductPrices{
         
 
         $xpath = new DOMXPath($doc);
-    
+        //collects all required html nodes.
         $data['details'] = $xpath->query('//div[@class="placard"]//div[@class="small-7 large-12 columns utilized"]/h6/a');
         $data['images'] = $xpath->query('//div[@class="placard"]//div[@class="small-5 large-12 columns utilized"]//img');
         $data['price'] = $xpath->query('//div[@class="placard"]//div[@class="small-7 large-12 columns utilized"]/h4');
@@ -180,7 +181,7 @@ class SouqProductPrices{
     }
 
     public function sort($key = 'price_discounted', $sortOrder = SORT_ASC) {
-        usort($this->products, $this->makeComparerCB([$key, $sortOrder])) ;
+        usort($this->products, $this->makeComparerCB(array($key, $sortOrder))) ;
     }
 
     public function send($error = false){
@@ -202,6 +203,24 @@ class SouqProductPrices{
     }
 }
 
+/////////////////fix for PHP <5.4 //////
+if (!function_exists('http_response_code'))
+{
+    function http_response_code($newcode = NULL)
+    {
+        static $code = 200;
+        if($newcode !== NULL)
+        {
+            header('X-PHP-Response-Code: '.$newcode, true, $newcode);
+            if(!headers_sent())
+                $code = $newcode;
+        }       
+        return $code;
+    }
+}
+////////////////////////////////////
+
+////// Class Call //////////////////
 ////////////////////////////////////
 
 $params = $_REQUEST;

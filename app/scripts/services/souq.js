@@ -40,7 +40,7 @@ angular.module('souqPricesApp')
         this.page = this.page + 1;
       }
 
-      var url = 'http://localhost/test/scrap.php?s=' + this.keyword + '&sort=' + this.sortBy + '&order=' + this.orderBy + '&page=' + this.page;
+      var url = 'http://souq.infohe.com/api.php?s=' + this.keyword + '&sort=' + this.sortBy + '&order=' + this.orderBy + '&page=' + this.page;
 	     
       var souq = this;
 

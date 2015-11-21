@@ -4,12 +4,11 @@
   "dependencies": {
     "angular": "^1.4.0",
     "angular-materialize": "*",
-    "Materialize": "materialize#~0.97.3",
-    "angular-material": "~0.11.4"
+    "Materialize": "materialize#~0.97.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "souqPricesAppApp"
+  "moduleName": "souqPricesApp"
 }
