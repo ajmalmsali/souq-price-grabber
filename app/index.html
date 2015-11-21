@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <!-- build:css(.) styles/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+      <link rel="stylesheet" href="bower_components/Materialize/bin/materialize.css" />
+      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <!-- endbower -->
+      <!-- endbuild -->
+    
+      <!-- build:css(.tmp) styles/main.css -->
+      <link rel="stylesheet" href="styles/main.css">
+      <!-- endbuild -->
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      
+    </head>
+
+    <body ng-app="souqPricesApp" ng-controller="MainCtrl">
+
+      <nav>
+        <a href="#" class="brand-logo center">Souq.com Prices</a>
+        <div class="nav-wrapper">
+          <form>
+            <div input-field>
+              <input id="search" type="search" ng-model="input.searchKeyword" length="150" ng-enter="changeSearch()">
+              <label for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+        <span>Souq.com Prices</span>
+      </nav>
+
+      <div class="container" class="ng-clock" ng-clock>
+        <div class="row">
+          <div class="col s12 m4 l4" ng-repeat="product in souq.products">
+          <div class="card medium">
+            <div class="waves-effect waves-block waves-light center">
+              <img class="activator" ng-src="{{ product.image }}" style="max-height: 10rem; max-width:10rem; padding:20px;">
+            </div>
+            <div class="card-content">
+
+              <span class="card-title activator grey-text text-darken-4">
+                {{ product.name | limitTo: 30 }}...
+                <i class="material-icons right">more_vert</i>
+              </span>
+
+              <p class="center">
+                <i class="material-icons red-text" ng-repeat="i in getRating(product.rating_stars, true)">star</i>
+                <i class="material-icons red-text" ng-repeat="i in getRating(product.rating_stars, false)">star_border</i>
+              </p>
+
+            </div>
+            <div class="card-action">
+              <a ng-href="{{ product.url }}" class="center">
+                  <strike class="grey-text" ng-show="product.price_listed!=0">{{ product.price_listed }}</strike>&nbsp;
+                  {{ product.price_discounted }}{{ product.price_currency }}
+                  
+                </a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{ product.name }}<i class="material-icons right">close</i></span>
+              <p ng-show="product.price_listed!=0">Old Price : <strike>{{ product.price_listed }}</strike> <b>{{ product.currency }}</b></p>
+              <p>New Price : {{ product.price_discounted }} <b>{{ product.currency }}</b></p>
+              <p>Rating : {{ product.rating_stars }} / 5</p>
+              <p class="center"><i class="material-icons red-text" ng-repeat="i in getRating(product.rating_stars, true)">star</i>
+                <i class="material-icons red-text" ng-repeat="i in getRating(product.rating_stars, false)">star_border</i> </p>
+              <p>Reviews : {{ product.rating_reviews }}</p>
+              <p class="center"><a class="btn-floating btn-large waves-effect waves-light red" ng-href="{{ product.url }}"><i class="material-icons">add_shopping_cart</i>Buy</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" ng-show="souq.busy">
+          <div class="progress">
+              <div class="indeterminate"></div>
+          </div>
+        </div>
+
+        <div class="row center" ng-hide="souq.busy">
+          <a class="btn-floating btn-large red" ng-click="souq.getPrices(true)"><i class="material-icons">arrow_downward</i>More..</a>
+        </div>
+
+      </div>
+
+      <div class="centered-loader center" ng-show="souq.busy">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
+    <script src="bower_components/Materialize/bin/materialize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/services/souq.js"></script>
+    <!-- endbuild -->
+
+
+    </body>
+  </html>
