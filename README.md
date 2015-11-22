@@ -20,6 +20,8 @@ Single class with methods to curl into, fetch, scrap, parse and json_encode resu
 * [PHP] - Hypertext Preprocessor
 & a lot more like grunt, bower, node.js, karma, yo ...
 
+### Screenshot
+![screenshot](https://cloud.githubusercontent.com/assets/1175631/11322992/dae3237c-9129-11e5-88af-47d80aa911f1.png)
 ### Compiling Frontend Angular App
 
 ```sh
